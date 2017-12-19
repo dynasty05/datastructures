@@ -128,4 +128,64 @@ public class TestBinarySearchTree {
         assertEquals(4, bst.size());
 
     }
+
+    @Test
+    public void shouldReturnFalseForEmptyTree(){
+        // arrange
+        BinarySearchTree bst = new BinarySearchTree();
+
+        // act
+        boolean result = bst.find(50, bst.getRootNode());
+
+        // assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void shouldReturnTrueIfNodeExistsInTree(){
+        // arrange
+        BinarySearchTree bst = new BinarySearchTree();
+        // root node is set after first insertion
+        Node n1 = new Node(100);
+        Node n2 = new Node(90);
+        Node n3 = new Node(200);
+        Node n4 = new Node(85);
+
+        bst.insert(n1, bst.getRootNode());
+        Node root = bst.getRootNode();
+        bst.insert(n2, root);
+        bst.insert(n3, root);
+        bst.insert(n4, root);
+
+
+        // act
+        boolean result = bst.find(85, root);
+
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void shouldReturnFalseIfNodeDoesNotExistInTree(){
+        // arrange
+        BinarySearchTree bst = new BinarySearchTree();
+        // root node is set after first insertion
+        Node n1 = new Node(100);
+        Node n2 = new Node(90);
+        Node n3 = new Node(200);
+        Node n4 = new Node(85);
+
+        bst.insert(n1, bst.getRootNode());
+        Node root = bst.getRootNode();
+        bst.insert(n2, root);
+        bst.insert(n3, root);
+        bst.insert(n4, root);
+
+
+        // act
+        boolean result = bst.find(300, root);
+
+        // assert
+        assertFalse(result);
+    }
 }

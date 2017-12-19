@@ -1,5 +1,7 @@
 package main.java.com.thirtytwotwenty;
 
+import javax.lang.model.type.ReferenceType;
+
 /**
  * Created by ribake on 19/12/2017.
  * Java implementation of Binary Search Tree.
@@ -93,5 +95,37 @@ public class BinarySearchTree {
         }
 
         return n;
+    }
+
+    /**
+     * Search this tree for the data.
+     * @param i the data to search for
+     * @param n the root of the tree or subtree
+     * @return true if data exists in tree,
+     *          false otherwise
+     */
+    public boolean find(int i, Node n) {
+        boolean found = false;
+        // base condition
+        if (this.root == null){
+            found = false;
+            return found;
+
+        } else if (i == n.getData()){
+            found = true;
+            return found;
+
+        }
+
+        if (n.getLeftChild() != null && found == false){
+            Node root = n.getLeftChild();
+            found = find(i, root);
+
+        } else if (n.getRightChild() != null && found == false){
+            Node root = n.getRightChild();
+            found = find(i, root);
+        }
+
+        return found;
     }
 }
