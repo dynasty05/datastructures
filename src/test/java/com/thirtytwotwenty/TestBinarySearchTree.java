@@ -20,8 +20,8 @@ public class TestBinarySearchTree {
     public void shouldReturnNodeReferenceWhenNodeInsertedInEmptyTree(){
         // arrange
         BinarySearchTree bst = new BinarySearchTree();
-        Node n = new Node(100);
         Node root = bst.getRootNode();
+        Node n = new Node(100);
 
         // act
         bst.insert(n, root);
@@ -32,5 +32,100 @@ public class TestBinarySearchTree {
         assertEquals(1, bst.size());
     }
 
+    @Test
+    public void shouldAddNodeInLeftSubTreeForNodeLessThanRoot(){
+        // arrange
+        BinarySearchTree bst = new BinarySearchTree();
+        // root node is 100
+        Node n1 = new Node(100);
+        bst.insert(n1, bst.getRootNode());
 
+        // act - add node 90
+        Node n2 = new Node(90);
+        bst.insert(n2, bst.getRootNode());
+
+        // assert
+        assertEquals(n2, bst.getRootNode().getLeftChild());
+        assertEquals(2, bst.size());
+
+    }
+
+    @Test
+    public void shouldAddNodeInRightSubTreeForNodeGreaterThanRoot(){
+        // arrange
+        BinarySearchTree bst = new BinarySearchTree();
+        // root node is 100
+        Node n1 = new Node(100);
+        bst.insert(n1, bst.getRootNode());
+
+        // act - add node 200
+        Node n2 = new Node(200);
+        bst.insert(n2, bst.getRootNode());
+
+        // assert
+        assertEquals(n2, bst.getRootNode().getRightChild());
+        assertEquals(2, bst.size());
+
+    }
+
+    @Test
+    public void shouldInsertNodeInLeftSubtreeForNodeEqualToRootNode(){
+        // arrange
+        BinarySearchTree bst = new BinarySearchTree();
+        // root node is 100
+        Node n1 = new Node(100);
+        bst.insert(n1, bst.getRootNode());
+
+        // act - add node 100
+        Node n2 = new Node(100);
+        bst.insert(n2, bst.getRootNode());
+
+        // assert
+        assertEquals(n2, bst.getRootNode().getLeftChild());
+        assertEquals(2, bst.size());
+
+    }
+
+    @Test
+    public void shouldInsertNodeInLeftSubtreePositionForLeastNode(){
+        // arrange
+        BinarySearchTree bst = new BinarySearchTree();
+        // root node is 100
+        Node n1 = new Node(100);
+        Node n2 = new Node(90);
+        bst.insert(n1, bst.getRootNode());
+        bst.insert(new Node(200), bst.getRootNode());
+        bst.insert(n2, bst.getRootNode());
+
+        // act - add node 80
+        Node n3 = new Node(80);
+        bst.insert(n3, bst.getRootNode());
+
+        // assert
+        assertEquals(n3, n2.getLeftChild());
+        assertEquals(4, bst.size());
+
+    }
+
+    @Test
+    public void shouldInsertNodeInRightSubtreePositionForGreatestNode(){
+        // arrange
+        BinarySearchTree bst = new BinarySearchTree();
+        // root node is 100
+        Node n1 = new Node(100);
+        Node n2 = new Node(90);
+        Node n3 = new Node(200);
+        bst.insert(n1, bst.getRootNode());
+        bst.insert(n2, bst.getRootNode());
+        bst.insert(n3, bst.getRootNode());
+
+        // act - add node 300
+        Node n4 = new Node(400);
+        bst.insert(n4, bst.getRootNode());
+
+        // assert
+        assertEquals(n4, n3.getRightChild());
+        assertEquals(4, bst.size());
+
+    }
 }
