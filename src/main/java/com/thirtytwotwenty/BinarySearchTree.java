@@ -87,11 +87,11 @@ public class BinarySearchTree {
         } else if (n.getData() <= root.getData()){
             // recursively insert into left sub-tree
             root = root.getLeftChild();
-            insert(n, root);
+            theNode = insert(n, root);
 
         } else { // recursively insert into right sub-tree
             root = root.getRightChild();
-            insert(n, root);
+            theNode = insert(n, root);
         }
 
         return n;
@@ -127,5 +127,51 @@ public class BinarySearchTree {
         }
 
         return found;
+    }
+
+
+    /**
+     * Find minimum node in tree
+     * @return the minimum node
+     */
+    public Node findMinimum(Node root) {
+        Node min = null;
+        if(this.root == null){
+            min = null;
+
+        } else if (root.getLeftChild() == null){
+            // the lowest order found
+            min = root;
+
+        } else {
+            // recursively find minimum of left subtree
+            root = root.getLeftChild();
+            min = findMinimum(root);
+        }
+
+        return min;
+    }
+
+    /**
+     * Find maximum node in tree
+     * @param root root of the tree or subtree
+     * @return the maximum node
+     */
+    public Node findMaximum(Node root) {
+        Node max = null;
+        // empty tree
+        if(this.root == null){
+            max = null;
+
+            // exit condition
+        } else if(root.getRightChild() == null){
+            max = root;
+
+        } else { // recursively find max node in right subtree
+            root = root.getRightChild();
+            max = findMaximum(root);
+        }
+
+        return max;
     }
 }
