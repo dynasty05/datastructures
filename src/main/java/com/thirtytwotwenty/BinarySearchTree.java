@@ -1,6 +1,8 @@
 package main.java.com.thirtytwotwenty;
 
 import javax.lang.model.type.ReferenceType;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 /**
  * Created by ribake on 19/12/2017.
@@ -173,5 +175,53 @@ public class BinarySearchTree {
         }
 
         return max;
+    }
+
+    // TODO: for height, max(leftsubtreeheight, rightsubtreeheight) + 1
+    public int height(Node root){
+        int h = 0;
+        return h;
+    }
+
+
+    // TODO: fix this
+    /**
+     * Traverse tree in level order
+     */
+    public String traverseLevelOrder(){
+        StringBuilder sb = new StringBuilder("");
+        String s = "";
+        if(this.root == null){
+
+
+        } else {
+            // add root to a queue. Need a queue so that nodes
+            // are processed in the order that they arrived.
+            LinkedList<Node> visited = new LinkedList<Node>();
+            visited.add(root);
+
+            // process head of queue and pull in any children
+//            Iterator<Node> iterator = visited.iterator();
+            while(!visited.isEmpty()){
+                Node head = visited.poll();
+                if(head.getLeftChild() != null){
+                    visited.add(root.getLeftChild());
+                }
+                if(head.getRightChild() != null){
+                    visited.add(root.getRightChild());
+                }
+
+                s = s.concat(Integer.toString(head.getData()));
+                s = s.concat(",");
+
+//                sb.append(head.getData());
+//                sb.append(",");
+            }
+        }
+
+
+//        sb.deleteCharAt(sb.length() - 1);
+//        return sb.toString();
+        return s;
     }
 }

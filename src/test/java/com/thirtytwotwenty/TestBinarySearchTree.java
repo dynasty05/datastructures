@@ -281,4 +281,28 @@ public class TestBinarySearchTree {
         assertEquals(max.getData(), result.getData());
     }
 
+    @Test
+    public void shouldPrintTreeDataInLevelOrder(){
+        // arrange
+        BinarySearchTree bst = new BinarySearchTree();
+        Node root = bst.insert(new Node(100), bst.getRootNode());
+        bst.insert(new Node(90), root);
+        bst.insert(new Node(200), root);
+        bst.insert(new Node(85), root);
+        bst.insert(new Node(95), root);
+        bst.insert(new Node(250), root);
+        bst.insert(new Node(5), root);
+
+        // act
+//        assertEquals(7, bst.size());
+//        assertTrue(bst.find(5, root));
+        String result = bst.traverseLevelOrder();
+        System.out.println(result);
+
+        // assert
+        String expected = "100,90,200,85,95,250,5,";
+        assertEquals(expected, result);
+
+    }
+
 }
